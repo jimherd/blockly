@@ -271,7 +271,7 @@ Blockly.Blocks['print'] = {
     for (var x = 0; x < this.itemCount_; x++) {
       this.removeInput('ADD' + x);
     }
-    this.itemCount_ = window.parseInt(xmlElement.getAttribute('items'), 10);
+    this.itemCount_ = parseInt(xmlElement.getAttribute('items'), 10);
     for (var x = 0; x < this.itemCount_; x++) {
       var input = this.appendValueInput('ADD' + x);
       if (x == 0) {
@@ -287,12 +287,12 @@ Blockly.Blocks['print'] = {
     }
   },
   decompose: function(workspace) {
-    var containerBlock = new Blockly.Block(workspace,
+    var containerBlock = new Blockly.Block.obtain(workspace,
                                            'print_container');
     containerBlock.initSvg();
     var connection = containerBlock.getInput('STACK').connection;
     for (var x = 0; x < this.itemCount_; x++) {
-      var itemBlock = new Blockly.Block(workspace, 'print_create_join_item');
+      var itemBlock = new Blockly.Block.obtain(workspace, 'print_create_join_item');
       itemBlock.initSvg();
       connection.connect(itemBlock.previousConnection);
       connection = itemBlock.nextConnection;
