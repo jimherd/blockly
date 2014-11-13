@@ -438,3 +438,70 @@ Blockly.Blocks['codeline'] = {
         'media/quote1.png', 12, 12));
   }
 };
+
+Blockly.Blocks['controls_for_no_increment'] = {
+  /**
+   * Block for 'for' loop.
+   * @this Blockly.Block
+   */
+  init: function() {
+    this.setHelpUrl(Blockly.Msg.CONTROLS_FOR_HELPURL);
+    this.setColour(120);
+    this.appendDummyInput()
+        .appendField(Blockly.Msg.CONTROLS_FOR_INPUT_WITH)
+        .appendField(new Blockly.FieldVariable(null), 'VAR');
+    this.interpolateMsg('from %1 to %2',
+                        ['FROM', 'Number', Blockly.ALIGN_RIGHT],
+                        ['TO', 'Number', Blockly.ALIGN_RIGHT],
+                        Blockly.ALIGN_RIGHT);
+    this.appendStatementInput('DO')
+        .appendField(Blockly.Msg.CONTROLS_FOR_INPUT_DO);
+    this.setPreviousStatement(true);
+    this.setNextStatement(true);
+    this.setInputsInline(true);
+    // Assign 'this' to a variable for use in the tooltip closure below.
+    var thisBlock = this;
+    this.setTooltip(function() {
+      return Blockly.Msg.CONTROLS_FOR_TOOLTIP.replace('%1',
+          thisBlock.getFieldValue('VAR'));
+    });
+  },
+  /**
+   * Return all variables referenced by this block.
+   * @return {!Array.<string>} List of variable names.
+   * @this Blockly.Block
+   */
+  getVars: function() {
+    return [this.getFieldValue('VAR')];
+  },
+  /**
+   * Notification that a variable is renaming.
+   * If the name matches one of this block's variables, rename it.
+   * @param {string} oldName Previous name of variable.
+   * @param {string} newName Renamed variable.
+   * @this Blockly.Block
+   */
+  renameVar: function(oldName, newName) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
+      this.setFieldValue(newName, 'VAR');
+    }
+  },
+  /**
+   * Add menu option to create getter block for loop variable.
+   * @param {!Array} options List of menu options to add to.
+   * @this Blockly.Block
+   */
+  customContextMenu: function(options) {
+    if (!this.isCollapsed()) {
+      var option = {enabled: true};
+      var name = this.getFieldValue('VAR');
+      option.text = Blockly.Msg.VARIABLES_SET_CREATE_GET.replace('%1', name);
+      var xmlField = goog.dom.createDom('field', null, name);
+      xmlField.setAttribute('name', 'VAR');
+      var xmlBlock = goog.dom.createDom('block', null, xmlField);
+      xmlBlock.setAttribute('type', 'variables_get');
+      option.callback = Blockly.ContextMenu.callbackFactory(this, xmlBlock);
+      options.push(option);
+    }
+  }
+};

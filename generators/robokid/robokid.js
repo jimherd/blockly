@@ -255,3 +255,45 @@ Blockly.Robokid['codeline'] = function(block) {
   var code = (block.getTitleValue('TEXT'));
   return code + ';\n';
 };
+
+Blockly.Robokid.controls_for_no_increment = function(block) {
+  // For loop.
+  var variable0 = Blockly.Robokid.variableDB_.getName(
+      block.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+  var argument0 = Blockly.Robokid.valueToCode(block, 'FROM',
+      Blockly.Robokid.ORDER_NONE) || 'false';
+  var argument1 = Blockly.Robokid.valueToCode(block, 'TO',
+      Blockly.Robokid.ORDER_NONE) || 'false';
+  var branch0 = Blockly.Robokid.statementToCode(block, 'DO');
+  var code;
+  if (argument0.match(/^-?\d+(\.\d+)?$/) &&
+      argument1.match(/^-?\d+(\.\d+)?$/)) {
+    // Both arguments are simple numbers.
+    var up = parseFloat(argument0) <= parseFloat(argument1);
+    code = 'for ' + variable0 + '=' + argument0  +
+       ' to ' + argument1 + ' {\n' + branch0 + '};\n';
+  } else {
+    code = '';
+    // Cache non-trivial values to variables to prevent repeated look-ups.
+    var startVar = argument0;
+    if (!argument0.match(/^\w+$/) && !argument0.match(/^-?\d+(\.\d+)?$/)) {
+      var startVar = Blockly.Robokid.variableDB_.getDistinctName(
+          variable0 + '_start', Blockly.Variables.NAME_TYPE);
+      code += 'var ' + startVar + ' = ' + argument0 + ';\n';
+    }
+    var endVar = argument1;
+    if (!argument1.match(/^\w+$/) && !argument1.match(/^-?\d+(\.\d+)?$/)) {
+      var endVar = Blockly.Robokid.variableDB_.getDistinctName(
+          variable0 + '_end', Blockly.Variables.NAME_TYPE);
+      code += 'var ' + endVar + ' = ' + argument1 + ';\n';
+    }
+    code += 'for ' + variable0 + '=' + startVar + ';\n' +
+        '    (' + startVar + ' <= ' + endVar + ') ? ' +
+        variable0 + ' <= ' + endVar + ' : ' +
+        variable0 + ' >= ' + endVar + ';\n' +
+        '    ' + variable0 +
+        ' += (' + startVar + ' <= ' + endVar + ') ? 1 : -1) {\n' +
+        branch0 + '}\n';
+  }
+  return code;
+};
