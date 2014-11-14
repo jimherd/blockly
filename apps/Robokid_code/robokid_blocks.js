@@ -194,15 +194,15 @@ Blockly.Blocks['read_sensor'] = {
     var thisBlock = this;
     this.setTooltip(function() {
       return Blockly.LANG_MATH_CHANGE_TOOLTIP_1.replace('%1',
-          thisBlock.getTitleValue('VAR'));
+          thisBlock.getFieldValue('VAR'));
     });
   },
   getVars: function() {
-	var variable = this.getTitleValue('VAR');
+	var variable = this.getFieldValue('VAR');
     return [variable];
   },
   renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
       this.setTitleValue(newName, 'VAR');
     }
   }
@@ -234,15 +234,15 @@ Blockly.Blocks['read_sysvar'] = {
     var thisBlock = this;
     this.setTooltip(function() {
       return Blockly.LANG_MATH_CHANGE_TOOLTIP_1.replace('%1',
-          thisBlock.getTitleValue('VAR'));
+          thisBlock.getFieldValue('VAR'));
     });
   },
   getVars: function() {
-	var variable = this.getTitleValue('VAR');
+	var variable = this.getFieldValue('VAR');
     return [variable];
   },
   renameVar: function(oldName, newName) {
-    if (Blockly.Names.equals(oldName, this.getTitleValue('VAR'))) {
+    if (Blockly.Names.equals(oldName, this.getFieldValue('VAR'))) {
       this.setTitleValue(newName, 'VAR');
     }
   }

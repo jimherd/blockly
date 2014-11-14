@@ -32,7 +32,7 @@ Blockly.Robokid.variables = {};
 
 Blockly.Robokid.variables_get = function(block) {
   // Variable getter.
-  var code = Blockly.Robokid.variableDB_.getName(block.getTitleValue('VAR'),
+  var code = Blockly.Robokid.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
   return [code, Blockly.Robokid.ORDER_ATOMIC];
 };
@@ -41,7 +41,7 @@ Blockly.Robokid.variables_set = function(block) {
   // Variable setter.
   var argument0 = Blockly.Robokid.valueToCode(block, 'VALUE',
       Blockly.Robokid.ORDER_NONE) || '0';
-  var varName = Blockly.Robokid.variableDB_.getName(block.getTitleValue('VAR'),
+  var varName = Blockly.Robokid.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
   return varName + '=' + argument0 + ';\n';
 };

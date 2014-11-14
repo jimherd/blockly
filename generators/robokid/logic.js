@@ -61,7 +61,7 @@ Blockly.Robokid['logic_compare'] = function(block) {
     'GT': '>',
     'GTE': '>='
   };
-  var operator = OPERATORS[block.getTitleValue('OP')];
+  var operator = OPERATORS[block.getFieldValue('OP')];
   var order = Blockly.Robokid.ORDER_RELATIONAL;
   var argument0 = Blockly.Robokid.valueToCode(block, 'A', order) || '0';
   var argument1 = Blockly.Robokid.valueToCode(block, 'B', order) || '0';
@@ -71,7 +71,7 @@ Blockly.Robokid['logic_compare'] = function(block) {
 
 Blockly.Robokid['logic_operation'] = function(block) {
   // Operations 'and', 'or'.
-  var operator = (block.getTitleValue('OP') == 'AND') ? 'and' : 'or';
+  var operator = (block.getFieldValue('OP') == 'AND') ? 'and' : 'or';
   var order = (operator == 'and') ? Blockly.Robokid.ORDER_LOGICAL_AND :
       Blockly.Robokid.ORDER_LOGICAL_OR;
   var argument0 = Blockly.Robokid.valueToCode(block, 'A', order);
@@ -104,6 +104,6 @@ Blockly.Robokid['logic_negate'] = function(block) {
 
 Blockly.Robokid['logic_boolean'] = function(block) {
   // Boolean values true and false.
-  var code = (block.getTitleValue('BOOL') == 'TRUE') ? 'True' : 'False';
+  var code = (block.getFieldValue('BOOL') == 'TRUE') ? 'True' : 'False';
   return [code, Blockly.Robokid.ORDER_ATOMIC];
 };

@@ -20,8 +20,7 @@
   <script type="text/javascript" src="../../blocks/math.js"></script>
   <script type="text/javascript" src="../../blocks/text.js"></script>
   <script type="text/javascript" src="../../blocks/variables.js"></script>
-  <script type="text/javascript" src="generated/en.js"></script>
-  <script type="text/javascript" src="../../msg/js/en.js"></script>
+  <script type="text/javascript" src="../../msg/js/en.js"></script> 
    
   <style>
     html, body {
@@ -36,20 +35,20 @@
     }
   </style>
   <script>
-    (function() {
-      // Load the language-specific files listed on the URL.
-      var files =
-          decodeURIComponent(window.location.search.substring(1)).split('&');
-      for (var x = 0; x < files.length; x++) {
-        var file = files[x];
-        if (file.match(/^\w+\/\w+\.js$/)) {
-          document.writeln('<script type="text/javascript" ' +
-              'src="../../Robokid_blockly/' + file + '"><' + '/script>');
-        } else {
-          console.error('Illegal language file: ' + file);
-        }
-      }
-    })();
+ //   (function() {
+ //     // Load the language-specific files listed on the URL.
+//      var files =
+//          decodeURIComponent(window.location.search.substring(1)).split('&');
+//      for (var x = 0; x < files.length; x++) {
+//        var file = files[x];
+//        if (file.match(/^\w+\/\w+\.js$/)) {
+//          document.writeln('<script type="text/javascript" ' +
+//              'src="../../blockly/' + file + '"><' + '/script>');
+//        } else {
+//          console.error('Illegal language file: ' + file);
+//        }
+//      }
+//    })();
 
     function init() {
        var toolbox = null;

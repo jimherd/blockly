@@ -36,12 +36,12 @@ Blockly.Robokid.control = {};
 
 Blockly.Robokid.controls_whileUntil = function(block) {
   // Do while/until loop.
-  var until = block.getTitleValue('MODE') == 'UNTIL';
+  var until = block.getFieldValue('MODE') == 'UNTIL';
   var argument0 = Blockly.Robokid.valueToCode(block, 'BOOL',
       until ? Blockly.Robokid.ORDER_LOGICAL_NOT :
       Blockly.Robokid.ORDER_NONE) || 'False';
   var branch0 = Blockly.Robokid.statementToCode(block, 'DO') || '  pass\n';
-  if (block.getTitleValue('MODE') == 'UNTIL') {
+  if (block.getFieldValue('MODE') == 'UNTIL') {
     if (!argument0.match(/^\w+$/)) {
       argument0 = '(' + argument0 + ')';
     }
@@ -53,7 +53,7 @@ Blockly.Robokid.controls_whileUntil = function(block) {
 Blockly.Robokid.controls_for = function(block) {
   // For loop.
   var variable0 = Blockly.Robokid.variableDB_.getName(
-      block.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+      block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.Robokid.valueToCode(block, 'FROM',
       Blockly.Robokid.ORDER_NONE) || 'false';
   var argument1 = Blockly.Robokid.valueToCode(block, 'TO',
@@ -106,7 +106,7 @@ Blockly.Robokid.controls_forEach = function(block) {
 
 Blockly.Robokid.controls_flow_statements = function(block) {
   // Flow statements: continue, break.
-  switch (block.getTitleValue('FLOW')) {
+  switch (block.getFieldValue('FLOW')) {
     case 'BREAK':
       return 'break\n';
     case 'CONTINUE':

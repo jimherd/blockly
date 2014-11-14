@@ -33,7 +33,7 @@ goog.require('Blockly.Robokid');
 Blockly.Robokid['math_number'] = function(block) {
 //Blockly.Robokid.math_number = function() {
   // Numeric value.
-  var code = parseFloat(block.getTitleValue('NUM'));
+  var code = parseFloat(block.getFieldValue('NUM'));
   return [code, Blockly.Robokid.ORDER_UNARY_SIGN];
 };
 
@@ -47,8 +47,8 @@ Blockly.Robokid['math_arithmetic'] = function(block) {
       'DIVIDE': ['/', Blockly.Robokid.ORDER_MULTIPLICATIVE],
       'POWER': ['**', Blockly.Robokid.ORDER_EXPONENTIATION]
   }; 
-  var tuple = OPERATORS[block.getTitleValue('OP')];
-//  var mode = block.getTitleValue('OP');
+  var tuple = OPERATORS[block.getFieldValue('OP')];
+//  var mode = block.getFieldValue('OP');
 //  var tuple = Blockly.Robokid.math_arithmetic.OPERATORS[mode];
   var operator = tuple[0];
   var order = tuple[1];
@@ -63,7 +63,7 @@ Blockly.Robokid['math_change'] = function(block) {
   // Add to a variable in place.
   var argument0 = Blockly.Robokid.valueToCode(block, 'DELTA',
       Blockly.Robokid.ORDER_ADDITIVE) || '0';
-  var varName = Blockly.Robokid.variableDB_.getName(block.getTitleValue('VAR'),
+  var varName = Blockly.Robokid.variableDB_.getName(block.getFieldValue('VAR'),
       Blockly.Variables.NAME_TYPE);
   return varName + ' = (' + varName + ' if type(' + varName + ') in (int, float) else 0)' +
       ' + ' + argument0 + '\n';
@@ -73,7 +73,7 @@ Blockly.Robokid['math_single'] = function(block) {
 //Blockly.Robokid.math_single = function() {
   // Math operators with single operand.
  
-  var operator = block.getTitleValue('OP');
+  var operator = block.getFieldValue('OP');
   var code;
   var arg;
   if (operator == 'NEG') {
@@ -158,7 +158,7 @@ Blockly.Robokid.math_trig = Blockly.Robokid.math_single;
 Blockly.Robokid['math_on_list'] = function(block) {
 //Blockly.Robokid.math_on_list = function() {
   // Math functions for lists.
-  func = block.getTitleValue('OP');
+  func = block.getFieldValue('OP');
   list = Blockly.Robokid.valueToCode(block, 'LIST',
       Blockly.Robokid.ORDER_NONE) || '[]';
   var code;

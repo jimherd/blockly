@@ -32,7 +32,7 @@ Blockly.Robokid.text = {};
 
 Blockly.Robokid.text = function(block) {
   // Text value.
-  var code = Blockly.Robokid.quote_(block.getTitleValue('TEXT'));
+  var code = Blockly.Robokid.quote_(block.getFieldValue('TEXT'));
   return [code, Blockly.Robokid.ORDER_ATOMIC];
 };
 
@@ -87,7 +87,7 @@ Blockly.Robokid.text_endString = function(block) {
   // Return a leading or trailing substring.
   // Do we need to prevent 'List index out of range' ERROR by checking
   // if argument 0 > len(argument1)? Or will ALL error be handled systematically?
-  var first = block.getTitleValue('END') == 'FIRST';
+  var first = block.getFieldValue('END') == 'FIRST';
   var argument0 = Blockly.Robokid.valueToCode(block, 'NUM',
       Blockly.Robokid.ORDER_NONE) || '1';
   var argument1 = Blockly.Robokid.valueToCode(block, 'TEXT',
@@ -100,7 +100,7 @@ Blockly.Robokid.text_endString = function(block) {
 Blockly.Robokid.text_indexOf = function(block) {
   // Search the text for a substring.
   // Should we allow for non-case sensitive???
-  var operator = block.getTitleValue('END') == 'FIRST' ? 'find' : 'rfind';
+  var operator = block.getFieldValue('END') == 'FIRST' ? 'find' : 'rfind';
   var argument0 = Blockly.Robokid.valueToCode(block, 'FIND',
       Blockly.Robokid.ORDER_NONE) || '\'\'';
   var argument1 = Blockly.Robokid.valueToCode(block, 'VALUE',
@@ -135,7 +135,7 @@ Blockly.Robokid.text_changeCase = function(block) {
     'LOWERCASE': '.toLowerCase()',
     'TITLECASE': null
   };
-  var operator = OPERATORS[block.getTitleValue('CASE')];
+  var operator = OPERATORS[block.getFieldValue('CASE')];
   var argument0 = Blockly.Robokid.valueToCode(block, 'TEXT',
       Blockly.Robokid.ORDER_MEMBER) || '\'\'';
   var code = argument0 + operator;
@@ -149,7 +149,7 @@ Blockly.Robokid.text_trim = function(block) {
     'RIGHT': '.trimRight()',
     'BOTH': '.trim()'
   };
-  var operator = OPERATORS[block.getTitleValue('MODE')];
+  var operator = OPERATORS[block.getFieldValue('MODE')];
   var argument0 = Blockly.Robokid.valueToCode(block, 'TEXT',
       Blockly.Robokid.ORDER_MEMBER) || '\'\'';
   var code = argument0 + operator;
@@ -165,9 +165,9 @@ Blockly.Robokid['text_print'] = function(block) {
 
 Blockly.Robokid['text_prompt'] = function(block) {
   // Prompt function.
-  var msg = Blockly.Robokid.quote_(block.getTitleValue('TEXT'));
+  var msg = Blockly.Robokid.quote_(block.getFieldValue('TEXT'));
   var code = 'window.prompt(' + msg + ')';
-  var toNumber = block.getTitleValue('TYPE') == 'NUMBER';
+  var toNumber = block.getFieldValue('TYPE') == 'NUMBER';
   if (toNumber) {
     code = 'parseFloat(' + code + ')';
   }

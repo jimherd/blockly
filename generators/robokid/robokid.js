@@ -40,7 +40,7 @@ Blockly.Robokid['LEDS_set'] = function(block) {
   
   var LED_A_value, LED_B_value, LED_C_value, LED_D_value;  
   
-    switch (block.getTitleValue('LED_A_mode')) {
+    switch (block.getFieldValue('LED_A_mode')) {
 		case 'off':
 			LED_A_value = '0';
 			break;
@@ -55,7 +55,7 @@ Blockly.Robokid['LEDS_set'] = function(block) {
 			break;
   }
 
-    switch (block.getTitleValue('LED_B_mode')) {
+    switch (block.getFieldValue('LED_B_mode')) {
 		case 'off':
 			LED_B_value = '0';
 			break;
@@ -70,7 +70,7 @@ Blockly.Robokid['LEDS_set'] = function(block) {
 			break;
   }
 
-    switch (block.getTitleValue('LED_C_mode')) {
+    switch (block.getFieldValue('LED_C_mode')) {
 		case 'off':
 			LED_C_value = '0';
 			break;
@@ -85,7 +85,7 @@ Blockly.Robokid['LEDS_set'] = function(block) {
 			break;
   }
 
-    switch (block.getTitleValue('LED_D_mode')) {
+    switch (block.getFieldValue('LED_D_mode')) {
 		case 'off':
 			LED_D_value = '0';
 			break;
@@ -131,7 +131,7 @@ Blockly.Robokid['set_speed'] = function(block) {
 Blockly.Robokid['motors'] = function(block) {
   // 
 	var left_mode, right_mode;
-    switch (block.getTitleValue('left_motor')) {
+    switch (block.getFieldValue('left_motor')) {
 		case 'off':
 			left_mode = '0';
 			break;
@@ -143,7 +143,7 @@ Blockly.Robokid['motors'] = function(block) {
 			break;
   }
 
-      switch (block.getTitleValue('right_motor')) {
+      switch (block.getFieldValue('right_motor')) {
 		case 'off':
 			right_mode = '0';
 			break;
@@ -159,7 +159,7 @@ Blockly.Robokid['motors'] = function(block) {
 
 Blockly.Robokid['comment'] = function(block) {
   // Simple code comment which does not generate any code
-  var code = (block.getTitleValue('TEXT'));
+  var code = (block.getFieldValue('TEXT'));
   return '# ' + code + ';\n';
 };
 
@@ -179,14 +179,14 @@ Blockly.Robokid['wait'] = function(block) {
 
 Blockly.Robokid['display'] = function(block) {
   // Simple code comment which does not generate any code
-  var code = (block.getTitleValue('TEXT'));
+  var code = (block.getFieldValue('TEXT'));
   return 'display \'' + code + '\';\n';
 };
 
 Blockly.Robokid['read_sensor'] = function(block) {
   // Read a sensor and assign to a variable
-  var code = (block.getTitleValue('SENSOR'));
-  var variable = (block.getTitleValue('VAR'));
+  var code = (block.getFieldValue('SENSOR'));
+  var variable = (block.getFieldValue('VAR'));
   if (!variable.match(/^[a-z]$/)) {
       variable = 'ERROR: variable should be a single letter';
 //	  promptName('test', '');
@@ -197,8 +197,8 @@ Blockly.Robokid['read_sensor'] = function(block) {
 Blockly.Robokid['read_sysvar'] = function(block) {
 //Blockly.Robokid.read_sysvar = function() {
   // Read a sensor and assign to a variable
-  var code = (block.getTitleValue('SYSVAR'));
-  var variable = (block.getTitleValue('VAR'));
+  var code = (block.getFieldValue('SYSVAR'));
+  var variable = (block.getFieldValue('VAR'));
   if (!variable.match(/^[a-z]$/)) {
       variable = 'ERROR: variable should be a single letter';
 //	  promptName('test', '');
@@ -243,7 +243,7 @@ Blockly.Robokid['calibrate'] = function(block) {
 Blockly.Robokid['play_note'] = function(block) {
 //Blockly.Robokid.play_note = function() {
   // Read a sensor and assign to a variable
-  var code = (block.getTitleValue('NOTE'));
+  var code = (block.getFieldValue('NOTE'));
   var argument0 = Blockly.Robokid.valueToCode(block, 'duration',
       Blockly.Robokid.ORDER_NONE) || '0';
 	  return 'note ' + code + ' ' + argument0 + ';\n';
@@ -252,14 +252,14 @@ Blockly.Robokid['play_note'] = function(block) {
 Blockly.Robokid['codeline'] = function(block) {
 //Blockly.Robokid.codeline = function() {
   // Simple code comment which does not generate any code
-  var code = (block.getTitleValue('TEXT'));
+  var code = (block.getFieldValue('TEXT'));
   return code + ';\n';
 };
 
-Blockly.Robokid.controls_for_no_increment = function(block) {
+Blockly.Robokid['controls_for_no_increment'] = function(block) {
   // For loop.
   var variable0 = Blockly.Robokid.variableDB_.getName(
-      block.getTitleValue('VAR'), Blockly.Variables.NAME_TYPE);
+      block.getFieldValue('VAR'), Blockly.Variables.NAME_TYPE);
   var argument0 = Blockly.Robokid.valueToCode(block, 'FROM',
       Blockly.Robokid.ORDER_NONE) || 'false';
   var argument1 = Blockly.Robokid.valueToCode(block, 'TO',
