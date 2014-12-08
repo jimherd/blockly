@@ -117,11 +117,11 @@ Blockly.Blocks['comment'] = {
 	var textInput = new Blockly.FieldTextInput('Comment here');
 	this.appendDummyInput()	
 		.appendField('Comment : ')
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote0.png', 12, 12))
+		.appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote0.png', 12, 12))
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote1.png', 12, 12));
+        .appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote1.png', 12, 12));
   }
 };
 
@@ -136,11 +136,11 @@ Blockly.Blocks['display'] = {
 	var textInput = new Blockly.FieldTextInput('Text here');
 	this.appendDummyInput()	
 		.appendField('Display : ')
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote0.png', 12, 12))
+        .appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote0.png', 12, 12))
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote1.png', 12, 12));
+        .appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote1.png', 12, 12));
   }
 };
 
@@ -431,11 +431,11 @@ Blockly.Blocks['codeline'] = {
 	var textInput = new Blockly.FieldTextInput('Code here');
 	this.appendDummyInput()	
 		.appendField('Code : ')
-		.appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote0.png', 12, 12))
+		.appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote0.png', 12, 12))
         .appendField(new Blockly.FieldTextInput(''), 'TEXT')
-        .appendField(new Blockly.FieldImage(Blockly.pathToBlockly +
-        'media/quote1.png', 12, 12));
+        .appendField(new Blockly.FieldImage(Blockly.pathToMedia +
+        'quote1.png', 12, 12));
   }
 };
 
